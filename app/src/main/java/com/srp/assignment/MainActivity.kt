@@ -15,6 +15,7 @@ import com.srp.assignment.model.SquareIssuesDataClassItem
 import com.srp.assignment.repository.IssuesRepository
 import com.srp.assignment.screens.CommentScreen
 import com.srp.assignment.service.OkHttpIssuesService
+import com.srp.assignment.service.Retrofit
 import com.srp.assignment.viewmodel.MainViewModel
 import com.srp.assignment.viewmodel.MyViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
@@ -28,13 +29,14 @@ class MainActivity : AppCompatActivity() {
 
 
     private lateinit var issuesList: ArrayList<SquareIssuesDataClassItem>
-    private val retrofitIssuesService = OkHttpIssuesService.getInstance()
+    private lateinit var retrofitIssuesService : OkHttpIssuesService
     lateinit var viewModel: MainViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        retrofitIssuesService = Retrofit().getInstance(Constants.BASE_URL)
         viewModel = ViewModelProvider(
             this,
             MyViewModelFactory(IssuesRepository(retrofitIssuesService))

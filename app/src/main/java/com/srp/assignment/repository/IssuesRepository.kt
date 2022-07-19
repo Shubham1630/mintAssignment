@@ -6,4 +6,5 @@ class IssuesRepository constructor(private val retrofitService: OkHttpIssuesServ
 
 
     fun getAllIssues() = retrofitService.issuesList()
+    fun getAllComments() = retrofitService.getCommentList()
 }
