@@ -31,14 +31,17 @@
         android:id="@+id/tvNumReviews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@+id/imageViewItemRestaurant"
         android:textColor="@android:color/darker_gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/tvName"
         app:layout_constraintHorizontal_bias="0.052"
-        app:layout_constraintStart_toEndOf="@+id/imageViewItemRestaurant"
+        app:layout_constraintStart_toStartOf="@+id/tvName"
         app:layout_constraintTop_toBottomOf="@+id/tvName"
         app:layout_constraintVertical_bias="0.0"
-        tools:text="321 Reviews" />
+        tools:text="description" />
 
     <TextView
         android:id="@+id/tvAddress"
