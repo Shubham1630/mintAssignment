@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.srp.assignment.Constants
 import com.srp.assignment.R
+import com.srp.assignment.SharedPreferences
 import com.srp.assignment.adapter.CommentAdapter
 import com.srp.assignment.model.comments.CommentsItem
 import com.srp.assignment.repository.IssuesRepository
@@ -33,8 +34,8 @@ class CommentScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_comment_screen)
         getSupportActionBar()?.setTitle("CommentList")
-        commentURl = intent.getStringExtra(Constants.COMMENT_URL).toString().replace("comments", "").trim()
-
+        commentURl =
+            intent.getStringExtra(Constants.COMMENT_URL).toString().replace("comments", "").trim()
         retrofitIssuesService = Retrofit().getInstance(commentURl)
         viewModel = ViewModelProvider(
             this,
@@ -47,15 +48,24 @@ class CommentScreen : AppCompatActivity() {
         viewModel.getAllComments()
         commetRecyclerView.layoutManager = LinearLayoutManager(this)
 
+        if (getCommentFromPreference().isNotEmpty()) {
+            commentList = SharedPreferences.getCommentList(this@CommentScreen, commentURl)
+            initializeAdapter()
+        }
+
 
         attachObserver()
 
     }
 
+    private fun getCommentFromPreference(): ArrayList<CommentsItem> {
+        return SharedPreferences.getCommentList(this@CommentScreen, commentURl)
+    }
+
     private fun attachObserver() {
         viewModel.commentList.observe(this, Observer {
-
             commentList = it
+            SharedPreferences.saveCommentList(this@CommentScreen, commentList, commentURl)
             initializeAdapter()
         })
 
@@ -80,6 +90,7 @@ class CommentScreen : AppCompatActivity() {
                 DividerItemDecoration.VERTICAL
             )
         )
+        adapter.notifyDataSetChanged()
     }
 
 

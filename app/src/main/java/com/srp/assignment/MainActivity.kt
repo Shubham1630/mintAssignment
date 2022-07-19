@@ -9,7 +9,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.srp.assignment.R
 import com.srp.assignment.adapter.IssuesAdapter
 import com.srp.assignment.model.SquareIssuesDataClassItem
 import com.srp.assignment.repository.IssuesRepository
@@ -29,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private lateinit var issuesList: ArrayList<SquareIssuesDataClassItem>
-    private lateinit var retrofitIssuesService : OkHttpIssuesService
+    private lateinit var retrofitIssuesService: OkHttpIssuesService
     lateinit var viewModel: MainViewModel
 
 
@@ -43,8 +42,15 @@ class MainActivity : AppCompatActivity() {
         ).get(
             MainViewModel::class.java
         )
-
         issuesList = ArrayList<SquareIssuesDataClassItem>()
+
+
+        if (getIssuesListFromCache() != null) {
+            issuesList =
+                getIssuesListFromCache()
+            initializeAdapter()
+        }
+
         viewModel.getAllOkHttpIssues()
         rvRestaurants.layoutManager = LinearLayoutManager(this)
 
@@ -55,10 +61,15 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun getIssuesListFromCache(): ArrayList<SquareIssuesDataClassItem> {
+        return SharedPreferences.getIssuesList(this@MainActivity)
+    }
+
     private fun attachObserver() {
         viewModel.issuesList.observe(this, Observer {
             Log.d(TAG, "onCreate: $it")
             issuesList = it
+            SharedPreferences.saveIssuesList(this@MainActivity, issuesList)
             initializeAdapter()
         })
 
@@ -73,7 +84,7 @@ class MainActivity : AppCompatActivity() {
                 override fun onItemClick(position: Int) {
                     val intent = Intent(this@MainActivity, CommentScreen::class.java)
                     intent.putExtra(Constants.COMMENT_URL, issuesList[position].commentsUrl)
-                   startActivity(intent)
+                    startActivity(intent)
 
                 }
             })
@@ -85,6 +96,8 @@ class MainActivity : AppCompatActivity() {
                 DividerItemDecoration.VERTICAL
             )
         )
+
+        adapter.notifyDataSetChanged()
     }
 
 
