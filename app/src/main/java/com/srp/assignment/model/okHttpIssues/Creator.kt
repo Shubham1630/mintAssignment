@@ -1,9 +1,9 @@
-package com.srp.assignment.model
+package com.srp.assignment.model.okHttpIssues
 
 
 import com.google.gson.annotations.SerializedName
 
-data class Assignee(
+data class Creator(
     @SerializedName("login")
     val login: String?,
     @SerializedName("id")

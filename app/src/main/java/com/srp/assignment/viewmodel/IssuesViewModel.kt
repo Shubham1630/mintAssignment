@@ -3,8 +3,7 @@ package com.srp.assignment.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.srp.assignment.SharedPreferences
-import com.srp.assignment.model.SquareIssuesDataClassItem
+import com.srp.assignment.model.okHttpIssues.SquareIssuesDataClassItem
 import com.srp.assignment.model.comments.CommentsItem
 import com.srp.assignment.repository.IssuesRepository
 import retrofit2.Call

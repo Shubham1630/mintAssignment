@@ -1,4 +1,4 @@
-package com.srp.assignment
+package com.srp.assignment.utils
 
 import android.os.Build
 import androidx.annotation.RequiresApi

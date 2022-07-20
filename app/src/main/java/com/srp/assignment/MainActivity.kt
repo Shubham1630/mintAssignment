@@ -10,11 +10,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.srp.assignment.adapter.IssuesAdapter
-import com.srp.assignment.model.SquareIssuesDataClassItem
+import com.srp.assignment.model.okHttpIssues.SquareIssuesDataClassItem
 import com.srp.assignment.repository.IssuesRepository
 import com.srp.assignment.screens.CommentScreen
 import com.srp.assignment.service.OkHttpIssuesService
 import com.srp.assignment.service.Retrofit
+import com.srp.assignment.utils.Constants
+import com.srp.assignment.utils.SharedPreferences
 import com.srp.assignment.viewmodel.MainViewModel
 import com.srp.assignment.viewmodel.MyViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*

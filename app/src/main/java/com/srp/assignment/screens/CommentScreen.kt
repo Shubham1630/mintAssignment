@@ -6,9 +6,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.srp.assignment.Constants
+import com.srp.assignment.utils.Constants
 import com.srp.assignment.R
-import com.srp.assignment.SharedPreferences
+import com.srp.assignment.utils.SharedPreferences
 import com.srp.assignment.adapter.CommentAdapter
 import com.srp.assignment.model.comments.CommentsItem
 import com.srp.assignment.repository.IssuesRepository

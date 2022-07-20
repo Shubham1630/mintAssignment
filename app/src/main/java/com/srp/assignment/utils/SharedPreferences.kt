@@ -1,10 +1,10 @@
-package com.srp.assignment
+package com.srp.assignment.utils
 
 import android.content.Context
 import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken
 import com.google.gson.Gson
-import com.srp.assignment.model.SquareIssuesDataClassItem
 import com.srp.assignment.model.comments.CommentsItem
+import com.srp.assignment.model.okHttpIssues.SquareIssuesDataClassItem
 import java.lang.reflect.Type
 
 class SharedPreferences {
@@ -46,7 +46,6 @@ class SharedPreferences {
         }
 
 
-
         fun saveCommentList(context: Context, arrayList: List<Any>, comment: String) {
             val sharedPreference =
                 context.getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
@@ -73,9 +72,7 @@ class SharedPreferences {
             } else {
                 arrayList
             }
-    }
-
-
+        }
 
 
     }

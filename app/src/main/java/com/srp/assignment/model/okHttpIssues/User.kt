@@ -1,4 +1,4 @@
-package com.srp.assignment.model
+package com.srp.assignment.model.okHttpIssues
 
 
 import com.google.gson.annotations.SerializedName
